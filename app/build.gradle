@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.heikkine.cryptoportfolio"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        buildTypes.each {
+            it.buildConfigField "String", "COIN_IO_API_KEY", CoinIoApiKey
+
+            it.buildConfigField "Double", "AMOUNT_BTC", AmountBtc
+            it.buildConfigField "Double", "AMOUNT_ETH", AmountEth
+            it.buildConfigField "Double", "AMOUNT_LINK", AmountLink
+            it.buildConfigField "Double", "AMOUNT_BAT", AmountBat
+            it.buildConfigField "Double", "AMOUNT_RVN", AmountRvn
+            it.buildConfigField "Double", "AMOUNT_XRP", AmountXrp
+        }
+        debug {
+            buildConfigField "String", "COIN_IO_URL", "\"https://rest-sandbox.coinapi.io/\""
+        }
+        release {
+            buildConfigField "String", "COIN_IO_URL", "https://rest.coinapi.io/"
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.0.1'
+
+    //kotlin coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

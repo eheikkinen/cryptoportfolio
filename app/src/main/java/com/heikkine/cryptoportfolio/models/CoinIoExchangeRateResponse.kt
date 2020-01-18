@@ -2,7 +2,7 @@ package com.heikkine.cryptoportfolio.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ExchangeRateResponse(
+data class CoinIoExchangeRateResponse(
     @SerializedName("time")
     var time: String? = null,
     @SerializedName("asset_id_base")

@@ -29,7 +29,7 @@ android {
             buildConfigField "String", "COIN_IO_URL", "\"https://rest-sandbox.coinapi.io/\""
         }
         release {
-            buildConfigField "String", "COIN_IO_URL", "https://rest.coinapi.io/"
+            buildConfigField "String", "COIN_IO_URL", "\"https://rest.coinapi.io/\""
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
